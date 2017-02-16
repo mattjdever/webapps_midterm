@@ -1,0 +1,10 @@
+[
+    {
+        "id": '0',
+        "title": 'Build this Todo List',
+        "description": 'This is a huge midterm project, so you better get this right',
+        "dueDate": '03092017',
+        "isCompleted": false
+    }
+    
+]
