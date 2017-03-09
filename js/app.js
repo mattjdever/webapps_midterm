@@ -14,7 +14,7 @@ Requirements:
 *
 *************/
 var app = angular.module('mattTodo', ['ngRoute'] );
-app.$scope.appName = 'Matthew\'s ToDo-ly Awesome List';
+//app.$scope.appName = 'Matthew\'s ToDo-ly Awesome List';
 app.constant('appData',{
  name:  'Matthew\'s ToDo-ly Awesome List'
     });
@@ -22,11 +22,11 @@ app.config(['$routeProvider',
    function($routeProvider){
 
        $routeProvider.
-        when('/shows', {
-           templateUrl: 'templates/shows-list.template.html',
-           controller: 'ShowListController'
+        when('/tasks', {
+           templateUrl: 'templates/tasks-list.template.html',
+           controller: 'TaskListController'
        }).
-        when('/shows/:show', {
+        when('/tasks/:task', {
            templateUrl: 'templates/show-detail.template.html',
            controller: 'ShowDetailController'
        }).
