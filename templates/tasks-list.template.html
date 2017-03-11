@@ -1,6 +1,25 @@
-<p>My Tasks</p>
+<h2>Number of Tasks: {{totalTasks}}</h2>
+
 <ul class="list-unstyled">
-   <li ng-repeat="task in tasks">
-       <span><a href="#tasks/{{task.task}}">{{task.title}}</a></span>
+   <li ng-repeat="task in tasks | filter: { isCompleted: false } track by task.id" class="ui-state-default">
+     <div class="row align-top">
+          <div class="checkbox col-xs-10">
+              <label><input type="checkbox" value="" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
+          </div>
+          <div class="col-xs-2 text-right">
+            <span>{{task.dueDate}}</span>
+          </div> 
+      </div> 
+      <div class="row">
+          <div class="col-md-12">
+              <span>{{task.description}}</span>
+          </div>
+      </div> 
+   </li>
+   <li ng-repeat="task in tasks| filter: { isCompleted: true } track by todo.id" class="ui-state-default task-completed">
+      <div class="checkbox">
+          <label class="done-{{task.isCompleted}}"><input type="checkbox" ng-model="task.isCompleted" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
+      </div>
+
    </li>
 </ul>
