@@ -31,11 +31,16 @@ li.ui-state-default:last-child{
 li.task-completed {
     text-decoration: line-through;
 }
+.taskTitle {
+    color:darkgoldenrod;
+}
 .done-true {
   text-decoration: line-through;
   color: #fff;
 }
-
+.spacer {
+    margin-left:10px;
+}
 .checkbox {
     margin:0;
 }

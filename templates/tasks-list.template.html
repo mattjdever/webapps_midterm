@@ -8,10 +8,11 @@
    <li ng-repeat="task in tasks | filter: { isCompleted: false } track by task.id" class="ui-state-default">
      <div class="row align-top">
           <div class="checkbox col-xs-10">
-              <label><input type="checkbox" ng-model="task.isCompleted" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
+              <label class="taskTitle"><input type="checkbox" ng-model="task.isCompleted" />{{task.title}}<a href="#tasks/{{task.id}}"><i class="fa fa-pencil spacer" aria-hidden="true"></i></a></label>
+              
           </div>
           <div class="col-xs-2 text-right">
-            <span>{{task.dueDate}}</span>
+            <span ng-bind="convertToDate(task.dueDate) | date:'MM/dd/yyyy'"></span>
           </div> 
       </div> 
       <div class="row">
@@ -30,15 +31,15 @@
 <form data-ng-submit="addTodo()" class="todo-form">
     <div class="row">
         <div class="col-xs-10">
-            <input type="text" data-ng-model="todoTitle" placeholder="Enter new ToDo item" />
+            <input type="text" data-ng-model="todoTitle" placeholder="Enter new ToDo item" class="form-control" required/>
         </div>
-        <div class="col-xs-2">
-            <input type="text" data-ng-model="todoDate" placeholder="Enter due Date" />
+        <div class="col-xs-2 pull-right">
+            <input type="date" class="form-control" data-ng-model="todoDate" placeholder="MM-dd-yyyy" required/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <input type="text" data-ng-model="todoDescription" placeholder="Enter Description" />
+            <input type="text" class="form-control" data-ng-model="todoDescription" placeholder="Enter Description" required/>
         </div>
     </div>
 

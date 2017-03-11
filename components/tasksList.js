@@ -10,14 +10,14 @@ angular.module('mattTodo').component('tasksList', {
     "id":0,
     "title":"Build this amazing Todo List",
     "description":"This is a hugely midterm project, so you better get this right",
-    "dueDate":"03092017",
+    "dueDate":"2017-03-10T05:00:00.000Z",
     "isCompleted":false
   },
   {
     "id":1,
     "title":"Let us Edit the marvy Todos",
     "description":"We need to be able to edit these things",
-    "dueDate":"03102017",
+    "dueDate":"2017-03-09T05:00:00.000Z",
     "isCompleted":false
   }];
         
@@ -30,7 +30,7 @@ angular.module('mattTodo').component('tasksList', {
 			count+= task.isCompleted ? 0 : 1;
 		});
 		return count;
-	};
+	   };
         
         //add Item to LocalStorage
         $scope.addTodo = function() {
@@ -39,7 +39,7 @@ angular.module('mattTodo').component('tasksList', {
             id: cuid(),
 			title: $scope.todoTitle,
             description: $scope.todoDescription,
-            dueDate: $scope.todoDate,
+            dueDate:  $scope.todoDate,
 			isCompleted: false
 		});
 		$scope.todoTitle = ''; //clear the input after adding
@@ -47,7 +47,7 @@ angular.module('mattTodo').component('tasksList', {
         $scope.todoDescription = ''; //clear the input after adding
             
 		localStorage.setItem('tasks', JSON.stringify($scope.tasks));
-	};
+	   };
         
         // Delete Completed Tasks
         $scope.archive = function() {
@@ -58,7 +58,13 @@ angular.module('mattTodo').component('tasksList', {
 				$scope.tasks.push(task);
 		});
 		localStorage.setItem('tasks', JSON.stringify($scope.tasks));
-	};
+	   };
+        
+        $scope.convertToDate = function (stringDate){
+            var dateOut = new Date(stringDate);
+            dateOut.setDate(dateOut.getDate() + 1);
+            return dateOut;
+        };
         
         //This is the old code that reads from json file
 //        $http.get('data/todos.json').success(function(data, status, headers, config) {
