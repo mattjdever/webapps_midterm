@@ -27,25 +27,17 @@ app.config(
        {
            name: 'tasks',
            url: '/tasks',
-           component: 'tasks',
-           resolve: {
-                tasks: function(TodoService) {
-                    return TodoService.getTasks();
-                }
-            }
+           component: 'tasks'
+//           ,
+//           resolve: {
+//                tasks: function(TodoService) {
+//                    return TodoService.getTasks();
+//                }
+//            }
            
-       },
-
-       {
-            name: 'task',
-            url: '/tasks/{task}',
-            component: 'task',
-            resolve: {
-                task: function(TodoService, $transition$) {
-                  return TodoService.getTask($transition$.params().task);
-                }
-             }
        }
+
+       
      ]
      // Loop over the state definitions and register them
       states.forEach(function(state) {

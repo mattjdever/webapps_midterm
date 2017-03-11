@@ -1,10 +1,14 @@
-<h2>Number of Tasks: {{totalTasks}}</h2>
+<nav class="buttons row">
+           
+   <a href="" data-ng-click="archive()" class="btn-danger">Delete Completed</a>
+</nav>
+<h2>Number of Tasks: {{remaining}} of {{tasks.length}}</h2>
 
 <ul class="list-unstyled">
    <li ng-repeat="task in tasks | filter: { isCompleted: false } track by task.id" class="ui-state-default">
      <div class="row align-top">
           <div class="checkbox col-xs-10">
-              <label><input type="checkbox" value="" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
+              <label><input type="checkbox" ng-model="task.isCompleted" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
           </div>
           <div class="col-xs-2 text-right">
             <span>{{task.dueDate}}</span>
@@ -23,3 +27,20 @@
 
    </li>
 </ul>
+<form data-ng-submit="addTodo()" class="todo-form">
+    <div class="row">
+        <div class="col-xs-10">
+            <input type="text" data-ng-model="todoTitle" placeholder="Enter new ToDo item" />
+        </div>
+        <div class="col-xs-2">
+            <input type="text" data-ng-model="todoDate" placeholder="Enter due Date" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" data-ng-model="todoDescription" placeholder="Enter Description" />
+        </div>
+    </div>
+
+    <input class="btn-default" type="submit" value="Add Task" />
+</form>
