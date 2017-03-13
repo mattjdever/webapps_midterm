@@ -31,10 +31,10 @@ li.ui-state-default:last-child{
 li.task-completed {
     text-decoration: line-through;
 }
-.taskTitle {
+.taskTitle-false {
     color:darkgoldenrod;
 }
-.done-true {
+.taskTitle-true {
   text-decoration: line-through;
   color: #fff;
 }

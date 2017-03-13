@@ -8,7 +8,7 @@
    <li ng-repeat="task in tasks | filter: { isCompleted: false } track by task.id" class="ui-state-default">
      <div class="row align-top">
           <div class="checkbox col-xs-10">
-              <label class="taskTitle"><input type="checkbox" ng-model="task.isCompleted" />{{task.title}}<a href="#tasks/{{task.id}}"><i class="fa fa-pencil spacer" aria-hidden="true"></i></a></label>
+              <label class="taskTitle-{{task.isCompleted}}"><input type="checkbox" ng-model="task.isCompleted" ng-change="updateChecked()" ng-true-value="true"  ng-false-value="false"/>{{task.title}}<a href="" data-ng-click="editTask(task.id)"><i class="fa fa-pencil spacer" aria-hidden="true"></i></a></label>
               
           </div>
           <div class="col-xs-2 text-right">
@@ -21,9 +21,9 @@
           </div>
       </div> 
    </li>
-   <li ng-repeat="task in tasks| filter: { isCompleted: true } track by todo.id" class="ui-state-default task-completed">
+   <li ng-repeat="task in tasks| filter: { isCompleted: true } track by task.id" class="ui-state-default task-completed">
       <div class="checkbox">
-          <label class="done-{{task.isCompleted}}"><input type="checkbox" ng-model="task.isCompleted" /><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
+          <label class="taskTitle-{{task.isCompleted}}"><input type="checkbox" ng-model="task.isCompleted" ng-change="updateChecked()" ng-true-value="true"  ng-false-value="false"/><a href="#tasks/{{task.id}}">{{task.title}}</a></label>
       </div>
 
    </li>
@@ -34,7 +34,7 @@
             <input type="text" data-ng-model="todoTitle" placeholder="Enter new ToDo item" class="form-control" required/>
         </div>
         <div class="col-xs-2 pull-right">
-            <input type="date" class="form-control" data-ng-model="todoDate" placeholder="MM-dd-yyyy" required/>
+            <input type="date" class="form-control" data-ng-model="todoDate" placeholder="yyyy-MM-dd" required/>
         </div>
     </div>
     <div class="row">
