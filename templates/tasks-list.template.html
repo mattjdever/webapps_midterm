@@ -3,7 +3,7 @@
    <a href="" data-ng-click="archive()" class="btn-danger">Delete Completed Tasks</a>
     </div>
 </nav>
-<h2>Number of Tasks: {{remaining}} of {{tasks.length}}</h2>
+<h2>Number of Tasks: {{remaining()}} Not Completed of {{tasks.length}} Tasks</h2>
 
 <ul class="list-unstyled">
    <li ng-repeat="task in tasks | filter: { isCompleted: false } track by task.id" class="ui-state-default" ng-include="getTemplate(task)">
