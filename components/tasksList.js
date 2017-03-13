@@ -60,6 +60,23 @@ angular.module('mattTodo').component('tasksList', {
 		localStorage.setItem('tasks', JSON.stringify($scope.tasks));
 	   };
         
+        //Delete Sekected Task
+        $scope.deleteTask = function(selectedTask) {
+            console.log("Deleting task: " + selectedTask.title + " ID: " + selectedTask.id);
+		var oldTasks = $scope.tasks;
+		$scope.tasks = [];
+             console.log("Tasks Before filter:" + $scope.tasks);
+		angular.forEach(oldTasks, function(task){
+			if (!(task.id === selectedTask.id)){
+                console.log("Adding TaskID: " + task.id);
+				$scope.tasks.push(task);
+                console.log("Tasks: " + $scope.tasks);
+            }
+		});
+            console.log("Tasks After filter:" +$scope.tasks);
+		localStorage.setItem('tasks', JSON.stringify($scope.tasks));
+	   };
+        
         $scope.convertToDate = function (stringDate){
             var dateOut = new Date(stringDate);
             dateOut.setDate(dateOut.getDate() + 1);
@@ -77,7 +94,41 @@ angular.module('mattTodo').component('tasksList', {
             });
             localStorage.setItem('tasks', JSON.stringify($scope.tasks));
 	    };
+        //Edit task
+        $scope.editTask = function(task){
+            console.log("edit task:" + task);
+            $scope.oldTask = task;
+            $scope.selected = angular.copy(task);
+            console.log("selected:" + $scope.selected);
+        };
         
+        $scope.saveTask = function(task){
+            console.log("saving task:" + task);
+            console.log('Updated Checked Status: '  );
+            var oldTasks = $scope.tasks;
+            $scope.tasks = [];
+            angular.forEach(oldTasks, function(task){
+            //write updated info to localstorage    
+                $scope.tasks.push(task);
+            });
+            localStorage.setItem('tasks', JSON.stringify($scope.tasks));
+            $scope.selected = {};
+            console.log("Clearing Selected... Selected:" + $scope.selected);
+        };
+        $scope.clearTask = function(row){
+            console.log("clearing task row:" + row);
+            row.$rollbackViewValue() 
+            $scope.selected = {}; 
+            console.log("selected:" + $scope.selected);
+        };
+        
+        $scope.selected = {}; 
+        $scope.getTemplate = function (task) {  
+            if (task.id === $scope.selected.id){  
+                return 'templates/tasks-list-editrow.template.html';  
+            }  
+            else return 'templates/tasks-list-displayrow.template.html';  
+        };
 //        console.log ("Task0: " & $scope.tasks);
         //This is the old code that reads from json file
 //        $http.get('data/todos.json').success(function(data, status, headers, config) {

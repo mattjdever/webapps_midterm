@@ -36,7 +36,7 @@ li.task-completed {
 }
 .taskTitle-true {
   text-decoration: line-through;
-  color: #fff;
+  color: #000;
 }
 .spacer {
     margin-left:10px;
